@@ -1,10 +1,10 @@
-// var mode = localStorage.getItem('adm')
-// if(mode == "true")
-//   var gh = true
-// else
-//   var gh = false
+var mode = localStorage.getItem('adm')
+if(mode == "true")
+  var gh = true
+else
+  var gh = false
 
-// if (gh) {
+if (gh) {
   (function(window, document) {
     'use strict'
     const supports = !!document.querySelector
@@ -67,12 +67,18 @@
           settings.eleSalesSort.value = event['path'][2]['children'][6]['textContent']
         }
         if(event['path']['length'] == 18){
-          settings.eleEditId.value = event['path'][2]['children'][0]['textContent']
-          settings.eleEditUser.value = event['path'][2]['children'][1]['textContent']
-          settings.eleEditPass.value = event['path'][2]['children'][2]['textContent']
-          settings.eleEditName.value = event['path'][2]['children'][3]['textContent']
-          settings.eleEditTable.value = event['path'][2]['children'][4]['textContent']
-          settings.eleEditCity.value = event['path'][2]['children'][5]['textContent']
+          if(event['path'][0]['textContent'] == 'Editar'){
+            settings.eleEditId.value = event['path'][2]['children'][0]['textContent']
+            settings.eleEditUser.value = event['path'][2]['children'][1]['textContent']
+            settings.eleEditPass.value = event['path'][2]['children'][2]['textContent']
+            settings.eleEditName.value = event['path'][2]['children'][3]['textContent']
+            settings.eleEditTable.value = event['path'][2]['children'][4]['textContent']
+            settings.eleEditCity.value = event['path'][2]['children'][5]['textContent']
+          }
+          if(event['path'][0]['textContent'] == 'Deletar'){
+            dUser(event['path'][2]['children'][0]['textContent'])
+          }
+
         }
       }
     }
@@ -111,7 +117,7 @@
       tr.appendChild(th2)
       th3.innerHTML = 'Bola'
       tr.appendChild(th3)
-      th4.innerHTML = 'Action'
+      th4.innerHTML = 'Ação'
       tr.appendChild(th4)
       thead.appendChild(tr)
       table.className = 'table table-striped'
@@ -189,7 +195,7 @@
       tr.appendChild(th2)
       th3.innerHTML = 'Banca'
       tr.appendChild(th3)
-      th4.innerHTML = 'Action'
+      th4.innerHTML = 'Ação'
       tr.appendChild(th4)
       thead.appendChild(tr)
       table.className = 'table table-striped'
@@ -206,6 +212,7 @@
         var td6 = document.createElement('td')
         var td7 = document.createElement('td')
         var button = document.createElement('button')
+        var button2 = document.createElement('button')
 
         td1.innerHTML = JSON.parse(xhr.responseText)['data'][k]['_id']
         tr2.appendChild(td1)
@@ -226,9 +233,12 @@
         tr2.appendChild(td6)
         button.setAttribute('data-toggle', 'modal')
         button.setAttribute('data-target', '#editModal')
-        button.className = 'btn btn-info btn-xs'
+        button.className = 'btn btn-info btn-xs mr-2'
         button.innerHTML = 'Editar'
         td7.appendChild(button)
+        button2.className = 'btn btn-danger btn-xs'
+        button2.innerHTML = 'Deletar'
+        td7.appendChild(button2)
         tr2.appendChild(td7)
         tbody.appendChild(tr2)
         table.appendChild(tbody)
@@ -293,6 +303,16 @@
       settings.eleAddName.value = ''
       settings.eleAddTable.value = ''
       settings.eleAddCity.value = ''
+    }
+    
+    const dUser = (id) => {
+      var xhr = new XMLHttpRequest()
+      xhr.open("POST", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
+      xhr.send(JSON.stringify({
+        method: "DELETE",
+        sheet: "users",
+        id: String(id),
+      }))
     }
 
     const saveEdit = () => {
@@ -366,7 +386,7 @@
 
     init()
 }(window, document))
-// }
-// else{
-//   window.location.href ='adm.html'
-// }
+}
+else{
+  window.location.href ='adm.html'
+}

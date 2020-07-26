@@ -1,10 +1,10 @@
-// var mode = localStorage.getItem('login')
-// if(mode == "true")
-//   var gh = true
-// else
-//   var gh = false
+var mode = localStorage.getItem('login')
+if(mode == "true")
+  var gh = true
+else
+  var gh = false
 
-// if (gh) {
+if (gh) {
 (function(window, document) {
     'use strict'
     const supports = !!document.querySelector
@@ -116,7 +116,7 @@
 
     init()
 }(window, document))
-// }
-// else{
-//     window.location.href ='login.html'
-// }
+}
+else{
+    window.location.href ='login.html'
+}

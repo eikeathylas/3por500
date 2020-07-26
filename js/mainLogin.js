@@ -1,4 +1,3 @@
-// window.location.href ='index.html'
 (function(window, document) {
   'use strict'
   const supports = !!document.querySelector
