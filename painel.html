@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Eike Athylas">
+  <meta name="author" content="EaCode">
+
+  <title>3 por 500 - ADM</title>
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body id="info">
+  <div id="wrapper">
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <div id="content">
+
+        <nav class="navbar navbar-expand eacode-dark justify-content-center topbar mb-4 static-top">
+          <div class="d-sm-flex align-items-center  text-center mb-4">
+            <h1 class="h3 mt-4 mb-0 txt">Admin</h1>
+          </div>
+        </nav>
+        <div class="container-fluid">
+
+          <div class="row mb-4">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header py-3 d-flex justify-content-between">
+                  <h6 class="h5 mb-0 text-sun">Cadastrar resultado</h6>
+                </div>
+                <div class="card-body">
+                  <h5 class="middle font-weight-bold">Cidade:<input id="crCity" type="text"
+                      class="col-7 col-md-2 float-right"></h5>
+                  <hr>
+                  <h5 class="middle font-weight-bold">Data:<input id="crDate" type="date" class="float-right"></h5>
+                  <hr>
+                  <h5 class="middle font-weight-bold">Número:<input id="crNumber" type="number"
+                      class="col-7 col-md-2 float-right"></h5>
+                  <hr>
+                  <input type="button" id="btnCreateResult" class="btn btn-primary btn-xs float-right"
+                    value="Cadastrar">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card mb-4">
+                <button href="#adduser" class="d-block card-header py-3 justify-content-between collapsed"
+                  data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adduser">
+                  <h6 class="h5 mb-0 text-sun">Usuário</h6>
+                  <button data-toggle="modal" data-target="#addModal" class="btn btn-primary btn-xs"><b>+</b> Adicionar
+                    usuário</button>
+                </button>
+                <div class="collapse" id="adduser">
+                  <div id="bodyUsers" class="card-body">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card shadow">
+                <div class="card-header py-3 d-flex justify-content-between">
+                  <h5 class="h5 mb-0 text-sun">Vendas</h5>
+                  <input id="date" type="date">
+                </div>
+                <div id="bodySales" class="card-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Cidade</th>
+                        <th>Banca</th>
+                        <th>Bola</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="modalT" class="modal-title">Adicionar novo usuário</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input id="addTuser" type="text" class="form-control mb-4" placeholder="Usuário">
+          <input id="addTpass" type="text" class="form-control mb-4" placeholder="Senha">
+          <input id="addTname" type="text" class="form-control mb-4" placeholder="Nome">
+          <input id="addTtable" type="text" class="form-control mb-4" placeholder="Banca">
+          <input id="addTcity" type="text" class="form-control mb-4" placeholder="Cidade">
+        </div>
+        <div class="modal-footer">
+          <button id="saveadduser" type="submit" class="btn btn-default" data-dismiss="modal">Cadastrar <i
+              class="far fa-save"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="modalT" class="modal-title">Salvar usuário</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input id="editTid" type="text" class="form-control mb-4" disabled>
+          <input id="editTuser" type="text" class="form-control mb-4" placeholder="Usuário">
+          <input id="editTpass" type="text" class="form-control mb-4" placeholder="Senha">
+          <input id="editTname" type="text" class="form-control mb-4" placeholder="Nome">
+          <input id="editTtable" type="text" class="form-control mb-4" placeholder="Banca">
+          <input id="editTcity" type="text" class="form-control mb-4" placeholder="Cidade">
+        </div>
+        <div class="modal-footer">
+          <button id="saveedituser" type="submit" class="btn btn-default" data-dismiss="modal">Salvar <i
+              class="far fa-save"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="salesModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="modalT" class="modal-title">Todas as vendas</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input id="salesTcity" type="text" class="form-control mb-4" placeholder="Cidade" disabled>
+          <input id="salesTtable" type="text" class="form-control mb-4" placeholder="Banca" disabled>
+          <input id="salesTball" type="text" class="form-control mb-4" placeholder="Bola" disabled>
+          <input id="salesTcode" type="text" class="form-control mb-4" placeholder="Código" disabled>
+          <input id="salesTname" type="text" class="form-control mb-4" placeholder="Nome" disabled>
+          <input id="salesTday" type="text" class="form-control mb-4" placeholder="Data" disabled>
+          <input id="salesTsort" type="text" class="form-control mb-4" placeholder="Sorteio" disabled>
+        </div>
+        <div class="modal-footer">
+          <button id="salesPrint" type="submit" class="btn btn-default" data-dismiss="modal">Imprimir <i
+              class="fas fa-print"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/e30cc27e8d.js" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"
+    integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
+    crossorigin="anonymous"></script>
+  <script src="js/iconv-lite.bundle.js" charset="utf-8"></script>
+  <script src="js/app.js"></script>
+  <script src="js/mainAdmin.js"></script>
+
+</body>
+
+</html>
