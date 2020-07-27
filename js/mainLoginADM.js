@@ -6,14 +6,17 @@
       eleMain: document.getElementById('info'),
       eleLogin: '#login',
 
+      eleUser: '#user',
+      elePass: '#pass',
+
     }
 
   const settings = {}
 
   const main = (event) => {
 
-    if (event['path'][2]['children'][1][0]['value'] != '' && event['path'][2]['children'][1][1]['value'] != ''){
-      login(event['path'][2]['children'][1][0]['value'].toLowerCase(), event['path'][2]['children'][1][1]['value'].toLowerCase())
+    if (settings.eleUser.value != '' && settings.elePass.value != ''){
+      login(settings.eleUser.value.toLowerCase(), settings.elePass.value.toLowerCase())
     }
     else{
       alert('Preencha os dois campos')
@@ -45,6 +48,8 @@
 
   const setUp = function() {
     settings.eleLogin = defaults.eleMain.querySelector(defaults.eleLogin)
+    settings.eleUser = defaults.eleMain.querySelector(defaults.eleUser)
+    settings.elePass = defaults.eleMain.querySelector(defaults.elePass)
   }
 
   const events = function() {
