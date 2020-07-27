@@ -45,11 +45,11 @@ if (gh) {
       }
       
       if(event['type'] == 'click'){
-        if(event['path']['length'] == 12){
-          settings.eleT.innerHTML = 'Você escolheu o numero: <b>' + event['path'][0]['innerText'] + '</b>'
+        if(event.composedPath()['length'] == 12){
+          settings.eleT.innerHTML = 'Você escolheu o numero: <b>' + event.composedPath()[0]['innerText'] + '</b>'
           settings.eleName.value = ''
-          settings.eleT.id = event['path'][0]['innerText']
-          settings.eleValue.value = event['path'][0]['innerText']
+          settings.eleT.id = event.composedPath()[0]['innerText']
+          settings.eleValue.value = event.composedPath()[0]['innerText']
           settings.eleDateConfirm.value = settings.eleDate.value
         }
       }

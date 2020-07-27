@@ -60,7 +60,7 @@ if (gh) {
             for (var k = 0; k <= JSON.parse(xhr.responseText)['data']['length'] -1; k++){
                 var array = JSON.parse(xhr.responseText)['data'][k]['date'].split('T')
                 if (JSON.parse(xhr.responseText)['data'][k]['city'] == localStorage.getItem('city')){
-                    if (array[0] == event['path'][0]['value']){
+                    if (array[0] == event.composedPath()[0]['value']){
                         settings.eleRdate.innerHTML = array[0]
                         settings.eleNumber.innerHTML = String(JSON.parse(xhr.responseText)['data'][k]['number']).padStart(3, '0')
                     }else

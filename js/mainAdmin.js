@@ -52,26 +52,26 @@ if (gh) {
       }
       
       if(event['type'] == 'click'){
-        if(event['path']['length'] == 17){
-          settings.eleSalesCity.value = event['path'][2]['children'][0]['textContent']
-          settings.eleSalesTable.value = event['path'][2]['children'][1]['textContent']
-          settings.eleSalesBall.value = event['path'][2]['children'][2]['textContent']
-          settings.eleSalesCode.value = event['path'][2]['children'][3]['textContent']
-          settings.eleSalesName.value = event['path'][2]['children'][4]['textContent']
-          settings.eleSalesDay.value = event['path'][2]['children'][5]['textContent']
-          settings.eleSalesSort.value = event['path'][2]['children'][6]['textContent']
+        if(event.composedPath()['length'] == 17){
+          settings.eleSalesCity.value = event.composedPath()[2]['children'][0]['textContent']
+          settings.eleSalesTable.value = event.composedPath()[2]['children'][1]['textContent']
+          settings.eleSalesBall.value = event.composedPath()[2]['children'][2]['textContent']
+          settings.eleSalesCode.value = event.composedPath()[2]['children'][3]['textContent']
+          settings.eleSalesName.value = event.composedPath()[2]['children'][4]['textContent']
+          settings.eleSalesDay.value = event.composedPath()[2]['children'][5]['textContent']
+          settings.eleSalesSort.value = event.composedPath()[2]['children'][6]['textContent']
         }
-        if(event['path']['length'] == 18){
-          if(event['path'][0]['textContent'] == 'Editar'){
-            settings.eleEditId.value = event['path'][2]['children'][0]['textContent']
-            settings.eleEditUser.value = event['path'][2]['children'][1]['textContent']
-            settings.eleEditPass.value = event['path'][2]['children'][2]['textContent']
-            settings.eleEditName.value = event['path'][2]['children'][3]['textContent']
-            settings.eleEditTable.value = event['path'][2]['children'][4]['textContent']
-            settings.eleEditCity.value = event['path'][2]['children'][5]['textContent']
+        if(event.composedPath()['length'] == 18){
+          if(event.composedPath()[0]['textContent'] == 'Editar'){
+            settings.eleEditId.value = event.composedPath()[2]['children'][0]['textContent']
+            settings.eleEditUser.value = event.composedPath()[2]['children'][1]['textContent']
+            settings.eleEditPass.value = event.composedPath()[2]['children'][2]['textContent']
+            settings.eleEditName.value = event.composedPath()[2]['children'][3]['textContent']
+            settings.eleEditTable.value = event.composedPath()[2]['children'][4]['textContent']
+            settings.eleEditCity.value = event.composedPath()[2]['children'][5]['textContent']
           }
-          if(event['path'][0]['textContent'] == 'Deletar'){
-            dUser(event['path'][2]['children'][0]['textContent'])
+          if(event.composedPath()[0]['textContent'] == 'Deletar'){
+            dUser(event.composedPath()[2]['children'][0]['textContent'])
           }
 
         }
@@ -164,7 +164,7 @@ if (gh) {
         table.appendChild(tbody)
       }
 
-      event['path'][2]['children'][1]['children'][0].innerHTML = table.innerHTML
+      event.composedPath()[2]['children'][1]['children'][0].innerHTML = table.innerHTML
 
     }
     
