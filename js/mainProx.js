@@ -16,12 +16,11 @@ if (gh) {
         eleIcon: '#iconmenu',
         eleSign: '#sign-out',
         
-        eleHoraFinal: '26:40',
+        eleHoraFinal: '16:40',
 
         eleLessDate: '#menosdate',
         elePlusDate: '#maisdate',
         eleDate: '#date',
-
 
         eleCorpo: '#corpo',
         eleT: '#modalT',

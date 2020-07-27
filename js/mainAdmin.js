@@ -15,7 +15,6 @@ if (gh) {
         eleCrDate: '#crDate',
         eleCrNumber: '#crNumber',
         eleBtnCR: '#btnCreateResult',
-
         
         eleBodyUser: '#bodyUsers',
         eleAddUser: '#addTuser',
@@ -25,7 +24,6 @@ if (gh) {
         eleAddCity: '#addTcity',
         eleSaveAdd: '#saveadduser',
         
-        
         eleEditId: '#editTid',
         eleEditUser: '#editTuser',
         eleEditPass: '#editTpass',
@@ -33,9 +31,6 @@ if (gh) {
         eleEditTable: '#editTtable',
         eleEditCity: '#editTcity',
         eleSaveEdit: '#saveedituser',
-        
-        
-        
         
         eleDateSales: '#date',
         eleBodySales: '#bodySales',

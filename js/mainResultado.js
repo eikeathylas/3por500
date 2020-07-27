@@ -30,7 +30,6 @@ if (gh) {
         var today = new Date
         var date = ''
         date = new Date(today.getTime())
-        // settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
         settings.eleDate.max = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
         date = new Date(today.getTime() - (8 * 24 * 60 * 60 * 1000))
         settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()

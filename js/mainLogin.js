@@ -13,7 +13,7 @@
   const main = (event) => {
 
     if (event['path'][2]['children'][1][0]['value'] != '' && event['path'][2]['children'][1][1]['value'] != '')
-      login(event['path'][2]['children'][1][0]['value'], event['path'][2]['children'][1][1]['value'])
+      login(event['path'][2]['children'][1][0]['value'].toLowerCase(), event['path'][2]['children'][1][1]['value'].toLowerCase())
     else
       alert('Preencha os dois campos')
   }
@@ -26,20 +26,18 @@
         sheet: "users"
         }))
 
-      console.log(JSON.parse(xhr.responseText))
-
-        for (var k = 0; k <= JSON.parse(xhr.responseText)['data']['length'] -1; k++){
-          if (JSON.parse(xhr.responseText)['data'][k]['user'] == user){
-            if (JSON.parse(xhr.responseText)['data'][k]['pass'] == senha){
-              setLocalMode('login', true)
-              setLocalMode('cambista', JSON.parse(xhr.responseText)['data'][k]['table'])
-              setLocalMode('city', JSON.parse(xhr.responseText)['data'][k]['city'])
-              window.location.href ='index.html'
-            }else{
-              alert('Senha incorreta')
-            }
-          }
+    for (var k = 0; k <= JSON.parse(xhr.responseText)['data']['length'] -1; k++){
+      if (JSON.parse(xhr.responseText)['data'][k]['user'] == user){
+        if (JSON.parse(xhr.responseText)['data'][k]['pass'] == senha){
+          setLocalMode('login', true)
+          setLocalMode('cambista', JSON.parse(xhr.responseText)['data'][k]['table'])
+          setLocalMode('city', JSON.parse(xhr.responseText)['data'][k]['city'])
+          window.location.href ='index.html'
+        }else{
+          alert('Senha incorreta')
         }
+      }
+    }
   }
 
   const setLocalMode = (key, value) => {
