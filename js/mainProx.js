@@ -299,7 +299,7 @@ if (gh) {
           c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
           c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
           c.printText("Data:      "+ hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Hora:         "+ hora, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          c.printText("Hora:         "+ String(hora +':'+minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
           c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
           c.printText("Sorteio:   "+ sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
           c.printText("Hora:         17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
@@ -311,6 +311,9 @@ if (gh) {
           c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
           c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
           c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
+          c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
+          c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
           c.execute()
 
           var xhr = new XMLHttpRequest()
@@ -326,6 +329,7 @@ if (gh) {
               sort: settings.eleDate.value
             }
           }))
+
           xhr = new XMLHttpRequest()
           xhr.open("post", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
           xhr.send(JSON.stringify({
@@ -335,12 +339,15 @@ if (gh) {
               city: localStorage.getItem('city'),
               table: localStorage.getItem('cambista'),
               ball: settings.eleValue.value,
+              value: 3,
               code: text,
               name: settings.eleName.value,
               date: hj,
+              hora: String(hora +':'+minuto),
               sort: settings.eleDate.value
             }
           }))
+
         }else{
           alert('Número reservado')
         }

@@ -39,11 +39,6 @@
                   <h6 class="h5 mb-0 text-sun">Cadastrar resultado</h6>
                 </div>
                 <div class="card-body">
-                  <h5 class="middle font-weight-bold">Cidade:<input id="crCity" type="text"
-                      class="col-7 col-md-2 float-right"></h5>
-                  <hr>
-                  <h5 class="middle font-weight-bold">Data:<input id="crDate" type="date" class="float-right"></h5>
-                  <hr>
                   <h5 class="middle font-weight-bold">Número:<input id="crNumber" type="number"
                       class="col-7 col-md-2 float-right"></h5>
                   <hr>
@@ -60,8 +55,7 @@
                 <button href="#adduser" class="d-block card-header py-3 justify-content-between collapsed"
                   data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adduser">
                   <h6 class="h5 mb-0 text-sun">Usuário</h6>
-                  <button data-toggle="modal" data-target="#addModal" class="btn btn-primary btn-xs"><b>+</b> Adicionar
-                    usuário</button>
+                  <button data-toggle="modal" data-target="#addModal" class="btn btn-primary btn-xs"><b>+</b> Adicionar usuário</button>
                 </button>
                 <div class="collapse" id="adduser">
                   <div id="bodyUsers" class="card-body">
@@ -77,19 +71,9 @@
               <div class="card shadow">
                 <div class="card-header py-3 d-flex justify-content-between">
                   <h5 class="h5 mb-0 text-sun">Vendas</h5>
-                  <input id="date" type="date">
                 </div>
                 <div id="bodySales" class="card-body">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Cidade</th>
-                        <th>Banca</th>
-                        <th>Bola</th>
-                        <th>Ação</th>
-                      </tr>
-                    </thead>
-                  </table>
+                  
                 </div>
               </div>
             </div>
@@ -149,21 +133,45 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 id="modalT" class="modal-title">Todas as vendas</h4>
+          <h4 id="modalT" class="modal-title">Mais detalhes</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <input id="salesTcity" type="text" class="form-control mb-4" placeholder="Cidade" disabled>
-          <input id="salesTtable" type="text" class="form-control mb-4" placeholder="Banca" disabled>
-          <input id="salesTball" type="text" class="form-control mb-4" placeholder="Bola" disabled>
-          <input id="salesTcode" type="text" class="form-control mb-4" placeholder="Código" disabled>
-          <input id="salesTname" type="text" class="form-control mb-4" placeholder="Nome" disabled>
-          <input id="salesTday" type="text" class="form-control mb-4" placeholder="Data" disabled>
-          <input id="salesTsort" type="text" class="form-control mb-4" placeholder="Sorteio" disabled>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Cidade</p>
+            <input id="salesTCidade" type="text" class="form-control m-auto col-10" placeholder="Cidade" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Banca</p>
+          <input id="salesTBanca" type="text" class="form-control m-auto col-10" placeholder="Banca" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Bola</p>
+          <input id="salesTBola" type="text" class="form-control m-auto col-10" placeholder="Bola" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Valor</p>
+          <input id="salesTValor" type="text" class="form-control m-auto col-10" placeholder="Valor" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Código</p>
+          <input id="salesTCode" type="text" class="form-control m-auto col-10" placeholder="Código" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Nome</p>
+          <input id="salesTNome" type="text" class="form-control m-auto col-10" placeholder="Nome" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Data</p>
+          <input id="salesTData" type="text" class="form-control m-auto col-10" placeholder="Data" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Sorteio</p>
+          <input id="salesTsort" type="text" class="form-control m-auto col-10" placeholder="Sorteio" disabled>
+          </div>
         </div>
         <div class="modal-footer">
-          <button id="salesPrint" type="submit" class="btn btn-default" data-dismiss="modal">Imprimir <i
-              class="fas fa-print"></i></button>
+          <button id="salesPrint" type="submit" class="btn btn-default" data-dismiss="modal">Imprimir <i class="fas fa-print"></i></button>
         </div>
       </div>
     </div>

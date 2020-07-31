@@ -21,77 +21,73 @@
 <body id="info">
   <div id="wrapper">
     <ul class="navbar-nav eacode-dark-ex sidebar sidebar-dark accordion toggled" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-          <div class="sidebar-brand-icon">
-            <i class="fas fa-user-tie"></i>
-          </div>
-        </a>
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-dice"></i>
-            <span>Aposta</span></a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link" href="resultado.html">
-            <i class="fas fa-poll-h"></i>
-            <span>Resultados</span></a>
-        </li>
-  
-        <li class="nav-item active">
-          <a class="nav-link" href="minha.html">
-            <i class="fas fa-store"></i>
-            <span>Vendas</span></a>
-        </li>
-      </ul>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-dice"></i>
+          <span>Aposta</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="resultado.html">
+          <i class="fas fa-poll-h"></i>
+          <span>Resultados</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="minha.html">
+          <i class="fas fa-store"></i>
+          <span>Vendas</span></a>
+      </li>
+    </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
 
       <div id="content">
 
         <nav class="navbar navbar-expand eacode-dark topbar mb-4 static-top shadow">
-            <button id="sidebarToggleTop" class="btn d-md-none mr-3 menu">
-              <i id="iconmenu" class="fas fa-align-left"></i>
-            </button>
-  
-            <div class="d-sm-flex align-items-center">
-              <h1 class="h4 mb-0 txt">3 por 500</h1>
-            </div>
-  
-  
-            <ul class="navbar-nav ml-auto">
-              <button id="sign-out" class="btn mr-4 menu">Sair <i class="fas fa-sign-out-alt"></i></button>
-            </ul>
-          </nav>
+          <button id="sidebarToggleTop" class="btn d-md-none mr-3 menu">
+            <i id="iconmenu" class="fas fa-align-left"></i>
+          </button>
+
+          <div class="d-sm-flex align-items-center">
+            <h1 class="h4 mb-0 txt">3 por 500</h1>
+          </div>
+
+
+          <ul class="navbar-nav ml-auto">
+            <button id="sign-out" class="btn mr-4 menu">Sair <i class="fas fa-sign-out-alt"></i></button>
+          </ul>
+        </nav>
         <div class="container-fluid">
 
-            <div class="row align-items-center justify-content-center text-center mb-4">
-                <h1 class="h4 mt-4 mb-0 text-sun col-12 col-md-12">Minhas vendas</h1>
-    
-              </div>
+          <div class="row align-items-center justify-content-center text-center mb-4">
+            <h1 class="h4 mt-4 mb-0 text-sun col-12 col-md-12">Minhas vendas</h1>
+
+          </div>
+
+
 
           <div class="row">
             <div class="col-lg-12">
               <div class="card shadow">
                 <div class="card-header py-3 d-flex justify-content-between">
                   <h5 class="h5 mb-0 text-sun">Vendas</h5>
-                  <input id="date" type="date">
                 </div>
                 <div id="bodySales" class="card-body">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Bola</th>
-                        <th>Nome</th>
-                        <th>Ação</th>
-                      </tr>
-                    </thead>
-                  </table>
+
+
                 </div>
               </div>
             </div>
           </div>
+
+
 
         </div>
       </div>
@@ -103,22 +99,35 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 id="modalT" class="modal-title">Todas as vendas</h4>
+          <h4 id="modalT" class="modal-title">Mais detalhes</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <input id="salesTcity" type="text" class="form-control mb-4" placeholder="Cidade" disabled>
-          <input id="salesTtable" type="text" class="form-control mb-4" placeholder="Banca" disabled>
-          <input id="salesTball" type="text" class="form-control mb-4" placeholder="Bola" disabled>
-          <input id="salesTcode" type="text" class="form-control mb-4" placeholder="Código" disabled>
-          <input id="salesTname" type="text" class="form-control mb-4" placeholder="Nome" disabled>
-          <input id="salesTday" type="text" class="form-control mb-4" placeholder="Data" disabled>
-          <!-- <input id="salesTsort" type="text" class="form-control mb-4" placeholder="Sorteio" disabled> -->
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Nome</p>
+            <input id="salesTname" type="text" class="form-control m-auto col-10" placeholder="Nome" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Bola</p>
+          <input id="salesTball" type="text" class="form-control m-auto col-10" placeholder="Bola" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Banca</p>
+          <input id="salesTvalue" type="text" class="form-control m-auto col-10" placeholder="Banca" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Código</p>
+          <input id="salesTcode" type="text" class="form-control m-auto col-10" placeholder="Código" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Data</p>
+          <input id="salesTdate" type="text" class="form-control m-auto col-10" placeholder="Data" disabled>
+          </div>
+          <div class="mb-3">
+            <p class="ml-4 mb-0">Sorteio</p>
+          <input id="salesTsort" type="text" class="form-control m-auto col-10" placeholder="Sorteio" disabled>
+          </div>
         </div>
-        <!-- <div class="modal-footer">
-          <button id="salesPrint" type="submit" class="btn btn-default" data-dismiss="modal">Imprimir <i
-              class="fas fa-print"></i></button>
-        </div> -->
       </div>
     </div>
   </div>
