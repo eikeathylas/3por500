@@ -56,8 +56,6 @@ if (gh) {
       date = new Date(today.getTime() - (10 * 24 * 60 * 60 * 1000))
       var antes = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
 
-
-      localStorage.getItem('cambista')
       var queryTrue = "=QUERY(sales!A:I; #select * where B = '" + localStorage.getItem('cambista') + "' and G >= date '" + antes + "' and G <= date '" + hj + "' order by G ASC #)"
       var xhr = new XMLHttpRequest()
       xhr.open("POST", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
@@ -77,13 +75,10 @@ if (gh) {
         sheet: "vendas"
       }))
 
-
       if (JSON.parse(xhr.responseText)['data']['length'] > 0) {
         var datadobanco = JSON.parse(xhr.responseText)['data'][0]['date'].split('T')[0]
       }
       var lk = 0
-
-
       for (var k = 0; k < JSON.parse(xhr.responseText)['data']['length']; k++) {
 
         if (JSON.parse(xhr.responseText)['data']['length'] > 0) {
@@ -144,16 +139,14 @@ if (gh) {
 
                   var tbodyFilho = document.createElement('tbody')
                   var tr2Filho = document.createElement('tr')
-                  var td1Filho = document.createElement('td') // Nome
-                  var td2Filho = document.createElement('td') // Bola
-                  var td3Filho = document.createElement('td') // Valor
+                  var td1Filho = document.createElement('td')
+                  var td2Filho = document.createElement('td')
+                  var td3Filho = document.createElement('td')
                   var td4Filho = document.createElement('td')
                   var btnFilho = document.createElement('button')
-                  var td5Filho = document.createElement('td') // Code
-                  var td6Filho = document.createElement('td') // Date
-                  var td7Filho = document.createElement('td') // Sort
-
-
+                  var td5Filho = document.createElement('td')
+                  var td6Filho = document.createElement('td')
+                  var td7Filho = document.createElement('td')
 
                   td1Filho.hidden = false
                   td1Filho.innerHTML = JSON.parse(xhr.responseText)['data'][j]['name']
