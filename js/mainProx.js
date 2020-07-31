@@ -65,32 +65,32 @@ if (gh) {
 
       if(hora == defaults.eleHoraFinal && minuto < defaults.eleMinutoFinal){
         
-        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
-        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
+        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
         
         var today = new Date(settings.eleDate.value)
         var conf = new Date(today.getTime() + (2 * 24 * 60 * 60 * 1000))
-        settings.eleDate.max = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" + conf.getDate()
+        settings.eleDate.max = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" + String(conf.getDate()).padStart(2, '0')
         
       }else if(hora < defaults.eleHoraFinal){
         
-        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
-        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
+        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
         
         var today = new Date(settings.eleDate.value)
         var conf = new Date(today.getTime() + (2 * 24 * 60 * 60 * 1000))
-        settings.eleDate.max = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" + conf.getDate()
+        settings.eleDate.max = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
         
       }else{
 
         var date = new Date
         var conf = new Date(date.getTime() + (1 * 24 * 60 * 60 * 1000))
-        settings.eleDate.value = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" + conf.getDate()
-        settings.eleDate.min = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" + conf.getDate()
+        settings.eleDate.value = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
+        settings.eleDate.min = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
         
         var today = new Date(settings.eleDate.value)
         var conf = new Date(today.getTime() + (2 * 24 * 60 * 60 * 1000))
-        settings.eleDate.max = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" + conf.getDate()
+        settings.eleDate.max = conf.getFullYear() + "-" + String((conf.getMonth() + 1)).padStart(2, '0') + "-" +  String(conf.getDate()).padStart(2, '0')
 
       }
     }
