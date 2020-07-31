@@ -44,7 +44,6 @@ if (gh) {
           settings.eleSalesCode.value = event.composedPath()[2]['cells'][4]['innerText']
           settings.eleSalesDay.value = event.composedPath()[2]['cells'][5]['innerText']
           settings.eleSalesSort.value = event.composedPath()[2]['cells'][6]['innerText']
-
         }
       }
     }
@@ -59,7 +58,7 @@ if (gh) {
 
 
       localStorage.getItem('cambista')
-      var queryTrue = "=QUERY(sales!A:I; #select * where B = '" + localStorage.getItem('cambista') + "' and G > date '" + antes + "' and G < date '" + hj + "' order by G ASC #)"
+      var queryTrue = "=QUERY(sales!A:I; #select * where B = '" + localStorage.getItem('cambista') + "' and G >= date '" + antes + "' and G <= date '" + hj + "' order by G ASC #)"
       var xhr = new XMLHttpRequest()
       xhr.open("POST", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
       xhr.send(JSON.stringify({

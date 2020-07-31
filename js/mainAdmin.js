@@ -87,7 +87,7 @@ if (gh) {
       date = new Date(today.getTime() - (10 * 24 * 60 * 60 * 1000))
       var antes = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
 
-      var queryTrue = "=QUERY(sales!A:I; #select * where G > date '" + antes + "' and G < date '" + hj + "' order by G ASC #)"
+      var queryTrue = "=QUERY(sales!A:I; #select * where G >= date '" + antes + "' and G <= date '" + hj + "' order by G ASC #)"
       var xhr = new XMLHttpRequest()
       xhr.open("POST", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
       xhr.send(JSON.stringify({
