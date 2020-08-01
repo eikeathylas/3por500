@@ -65,8 +65,8 @@ if (gh) {
 
       if (hora == defaults.eleHoraFinal && minuto < defaults.eleMinutoFinal) {
 
-        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(conf.getDate()).padStart(2, '0')
-        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(conf.getDate()).padStart(2, '0')
+        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
+        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
 
         var today = new Date(settings.eleDate.value)
         var conf = new Date(today.getTime() + (2 * 24 * 60 * 60 * 1000))
@@ -74,8 +74,8 @@ if (gh) {
 
       } else if (hora < defaults.eleHoraFinal) {
 
-        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(conf.getDate()).padStart(2, '0')
-        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(conf.getDate()).padStart(2, '0')
+        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
+        settings.eleDate.min = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
 
         var today = new Date(settings.eleDate.value)
         var conf = new Date(today.getTime() + (2 * 24 * 60 * 60 * 1000))
@@ -164,7 +164,7 @@ if (gh) {
       var text = ""
       var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
       var date = new Date
-      var hj = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+      var hj = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
       var hjPrint = hj.split('-')
       hjPrint = hjPrint[2] + '/' + hjPrint[1] + '/' + hjPrint[0][2] + hjPrint[0][3]
       var hora = date.getHours()
@@ -172,6 +172,8 @@ if (gh) {
 
       var datas = settings.eleDate.value.split('-')
       var sorteio = datas[2] + '/' + datas[1] + '/' + datas[0][2] + datas[0][3]
+
+      console.log(settings.eleDate.value)
 
       if (hora == defaults.eleHoraFinal && minuto < defaults.eleMinutoFinal && settings.eleDate.value == hj) {
 
@@ -447,9 +449,12 @@ if (gh) {
           }
         }
         else {
+          console.log(settings.eleDate.value > hj)
+          console.log(settings.eleDate.value)
+          console.log(hj)
           var datas = settings.eleDate.value.split('-')
-          alert('Horario encerrado para as apostas, atualize a pagina ou aposte para o dia seguinte')
-          // alert('Horario encerrado para a data de: '+ datas[2]+ '/' +datas[1]+ '/' +datas[0][2]+datas[0][3])
+          // alert('Horario encerrado para as apostas, atualize a pagina ou aposte para o dia seguinte')
+          alert('Horario encerrado para a data de: '+ datas[2]+ '/' +datas[1]+ '/' +datas[0][2]+datas[0][3])
         }
       }
     }

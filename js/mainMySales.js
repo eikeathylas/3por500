@@ -18,6 +18,8 @@ if (gh) {
 
 
       eleValueTotal: '#valueTotal',
+      eleGanhoTotal: '#ganhoTotal',
+      elePagarTotal: '#pagarTotal',
 
       eleBodySales: '#bodySales',
 
@@ -36,6 +38,11 @@ if (gh) {
 
       if (event['type'] == 'load') {
         getSales()
+        var percento = settings.eleValueTotal.innerHTML.split(',')
+        settings.eleGanhoTotal.innerHTML = (percento[0] * 10) / 100
+        settings.elePagarTotal.innerHTML = percento[0] - settings.eleGanhoTotal.innerHTML
+
+        console.log(settings.elePagarTotal)
       }
 
       if (event['type'] == 'click') {
@@ -54,11 +61,11 @@ if (gh) {
       var today = new Date
       var date = ''
       date = new Date(today.getTime())
-      var hj = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+      var hj = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
       date = new Date(today.getTime() - (8 * 24 * 60 * 60 * 1000))
-      var antes = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+      var antes = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
 
-      var queryTrue = "=QUERY(sales!A:I; #select * where B = '" + localStorage.getItem('cambista') + "' and G >= date '" + antes + "' and G <= date '" + hj + "' order by G ASC #)"
+      var queryTrue = "=QUERY(sales!A:I; #select * where B = '" + localStorage.getItem('cambista') + "' and G > date '" + antes + "' and G <= date '" + hj + "' order by G ASC #)"
       var xhr = new XMLHttpRequest()
       xhr.open("POST", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
       xhr.send(JSON.stringify({
@@ -96,7 +103,9 @@ if (gh) {
               var detailsPai = document.createElement('details')
               var summaryPai = document.createElement('summary')
               var hrPai = document.createElement('hr')
-              var pPai = document.createElement('p')
+              var pReceita = document.createElement('p')
+              var pGanho = document.createElement('p')
+              var pPaga = document.createElement('p')
               var hrPai = document.createElement('hr')
               var divfilho = document.createElement('div')
               var hrPai = document.createElement('hr')
@@ -104,9 +113,18 @@ if (gh) {
               summaryPai.innerHTML = normal
               detailsPai.appendChild(summaryPai)
               detailsPai.appendChild(hrPai)
-              pPai.id = 'receita_' + normal.replace('/', '').replace('/', '').replace('/', '').replace('/', '').replace('/', '')
-              pPai.className = 'text-success font-weight-bold mt-2'
-              detailsPai.appendChild(pPai)
+              pReceita.id = 'receita_' + normal.replace('/', '').replace('/', '').replace('/', '').replace('/', '').replace('/', '')
+              pReceita.className = 'text-secondary font-weight-bold mt-2'
+              detailsPai.appendChild(pReceita)
+
+              pGanho.id = 'ganho_' + normal.replace('/', '').replace('/', '').replace('/', '').replace('/', '').replace('/', '')
+              pGanho.className = 'text-info font-weight-bold mt-2'
+              detailsPai.appendChild(pGanho)
+
+              pPaga.id = 'pagar_' + normal.replace('/', '').replace('/', '').replace('/', '').replace('/', '').replace('/', '')
+              pPaga.className = 'text-success font-weight-bold mt-2'
+              detailsPai.appendChild(pPaga)
+
               detailsPai.appendChild(hrPai)
               detailsPai.appendChild(divfilho)
               divPai.appendChild(detailsPai)
@@ -187,8 +205,15 @@ if (gh) {
                   divfilho.appendChild(tableFilho)
                   c += 1
                   dd += 1
-                  settings.pPai = defaults.eleMain.querySelector('#' + pPai.id)
-                  settings.pPai.innerHTML = 'Receita: R$ ' + c * 3 + ',00'
+                  settings.pReceita = defaults.eleMain.querySelector('#' + pReceita.id)
+                  settings.pGanho = defaults.eleMain.querySelector('#' + pGanho.id)
+                  settings.pPaga = defaults.eleMain.querySelector('#' + pPaga.id)
+
+                  settings.pReceita.innerHTML = 'Receita: R$ ' + c * 3 + ',00'
+                  settings.pGanho.innerHTML = 'Ganho: R$ ' +((c * 3) * 10) / 100
+                  var pagarcasa = (c * 3) - ((c * 3) * 10) / 100
+                  settings.pPaga.innerHTML = 'Pagar: R$ ' + pagarcasa
+                  
                   settings.eleValueTotal.innerHTML = dd * 3 + ',00'
 
                 } else {
@@ -225,6 +250,8 @@ if (gh) {
 
 
       settings.eleValueTotal = defaults.eleMain.querySelector(defaults.eleValueTotal)
+      settings.eleGanhoTotal = defaults.eleMain.querySelector(defaults.eleGanhoTotal)
+      settings.elePagarTotal = defaults.eleMain.querySelector(defaults.elePagarTotal)
 
       settings.eleBodySales = defaults.eleMain.querySelector(defaults.eleBodySales)
       settings.eleSalesName = defaults.eleMain.querySelector(defaults.eleSalesName)
