@@ -17,6 +17,8 @@ if (gh) {
       eleSign: '#sign-out',
 
 
+      eleValueTotal: '#valueTotal',
+
       eleBodySales: '#bodySales',
 
       eleSalesName: '#salesTname',
@@ -53,7 +55,7 @@ if (gh) {
       var date = ''
       date = new Date(today.getTime())
       var hj = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
-      date = new Date(today.getTime() - (10 * 24 * 60 * 60 * 1000))
+      date = new Date(today.getTime() - (8 * 24 * 60 * 60 * 1000))
       var antes = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
 
       var queryTrue = "=QUERY(sales!A:I; #select * where B = '" + localStorage.getItem('cambista') + "' and G >= date '" + antes + "' and G <= date '" + hj + "' order by G ASC #)"
@@ -76,13 +78,14 @@ if (gh) {
       }))
 
       if (JSON.parse(xhr.responseText)['data']['length'] > 0) {
-        var datadobanco = JSON.parse(xhr.responseText)['data'][0]['date'].split('T')[0]
+        var datadobanco = JSON.parse(xhr.responseText)['data'][0]['sort'].split('T')[0]
       }
       var lk = 0
+      var dd = 0
       for (var k = 0; k < JSON.parse(xhr.responseText)['data']['length']; k++) {
 
         if (JSON.parse(xhr.responseText)['data']['length'] > 0) {
-          if (JSON.parse(xhr.responseText)['data'][k]['date'].split('T')[0] == datadobanco) {
+          if (JSON.parse(xhr.responseText)['data'][k]['sort'].split('T')[0] == datadobanco) {
             var datas = datadobanco.split('-')
             var normal = datas[2] + '/' + datas[1] + '/' + datas[0][2] + datas[0][3]
             var thumb = document.getElementById('receita_' + normal.replace('/', '').replace('/', '').replace('/', '').replace('/', '').replace('/', ''))
@@ -135,7 +138,7 @@ if (gh) {
               tableFilho.className = 'table'
               tableFilho.appendChild(theadFilho)
               for (var j = lk; j < JSON.parse(xhr.responseText)['data']['length']; j++) {
-                if (JSON.parse(xhr.responseText)['data'][j]['date'].split('T')[0] == datadobanco) {
+                if (JSON.parse(xhr.responseText)['data'][j]['sort'].split('T')[0] == datadobanco) {
 
                   var tbodyFilho = document.createElement('tbody')
                   var tr2Filho = document.createElement('tr')
@@ -183,12 +186,14 @@ if (gh) {
                   tableFilho.appendChild(tbodyFilho)
                   divfilho.appendChild(tableFilho)
                   c += 1
+                  dd += 1
                   settings.pPai = defaults.eleMain.querySelector('#' + pPai.id)
                   settings.pPai.innerHTML = 'Receita: R$ ' + c * 3 + ',00'
+                  settings.eleValueTotal.innerHTML = dd * 3 + ',00'
 
                 } else {
                   lk = j
-                  var datadobanco = JSON.parse(xhr.responseText)['data'][j]['date'].split('T')[0]
+                  var datadobanco = JSON.parse(xhr.responseText)['data'][j]['sort'].split('T')[0]
                   break
                 }
 
@@ -218,6 +223,8 @@ if (gh) {
       settings.eleMenu = defaults.eleMain.querySelector(defaults.eleMenu)
       settings.eleSign = defaults.eleMain.querySelector(defaults.eleSign)
 
+
+      settings.eleValueTotal = defaults.eleMain.querySelector(defaults.eleValueTotal)
 
       settings.eleBodySales = defaults.eleMain.querySelector(defaults.eleBodySales)
       settings.eleSalesName = defaults.eleMain.querySelector(defaults.eleSalesName)

@@ -338,6 +338,9 @@ if (gh) {
     }
 
     const salesPrint = () => {
+      var date = new Date
+      var hora = date.getHours()
+      var minuto = date.getMinutes()
       var hjPrint = settings.elesalesTData.value.split('-')
       hjPrint = hjPrint[2] + '/' + hjPrint[1] + '/' + hjPrint[0][2] + hjPrint[0][3]
       var sortPrint = settings.elesalesTsort.value.split('-')
@@ -348,6 +351,7 @@ if (gh) {
       c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
       c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
       c.printText("Data:      " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      c.printText("Hora:         "+ String(hora +':'+minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
       c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
       c.printText("Sorteio:   " + sortPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
       c.printText("Hora:         17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
