@@ -515,7 +515,7 @@ if (gh) {
       if (!(settings.eleDate.value <= settings.eleDate.min)) {
         var today = new Date(settings.eleDate.value)
         var date = new Date(today.getTime())
-        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + date.getDate()
+        settings.eleDate.value = date.getFullYear() + "-" + String((date.getMonth() + 1)).padStart(2, '0') + "-" + String(date.getDate()).padStart(2, '0')
 
         var queryTrue = "=QUERY(ball!A:E; #select * where E = date '" + settings.eleDate.value + "'#)"
         var xhr = new XMLHttpRequest()
