@@ -346,27 +346,53 @@ if (gh) {
       var sortPrint = settings.elesalesTsort.value.split('-')
       sortPrint = sortPrint[2] + '/' + sortPrint[1] + '/' + sortPrint[0][2] + sortPrint[0][3]
 
-      var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
-      c.initialize()
-      c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
-      c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Hora          "+ String(hora +':'+minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Sorteio    " + sortPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Cambista " + settings.elesalesTBanca.value, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Código  " + settings.elesalesTCode.value, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText(settings.elesalesTBola.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
-      c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
-      c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-      c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
-      c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
-      c.execute()
+
+      var S = "#Intent;scheme=rawbt;"
+      var P =  "package=ru.a402d.rawbtprinter;end;"
+
+      var textEncoded = ''
+      textEncoded += '        3,00 POR 500,00\n'
+      textEncoded += '--------------------------------'
+      textEncoded += ' Data:                  '+ hjPrint +'\n'
+      textEncoded += ' Hora:                     '+ String(hora + ':' + minuto) +'\n'
+      textEncoded += '--------------------------------'
+      textEncoded += ' Data:                  '+ sortPrint +'\n'
+      textEncoded += ' Hora:                     17:00\n'
+      textEncoded += '--------------------------------'
+      textEncoded += ' Cambista:          '+ settings.elesalesTBanca.value +'\n'
+      textEncoded += ' Código:            '+ settings.elesalesTCode.value +'\n'
+      textEncoded += '--------------------------------'
+      textEncoded += ' Número:\n'
+      textEncoded += '              '+ settings.elesalesTBola.value +'\n'
+      textEncoded += '--------------------------------'
+      textEncoded += 'Pagamento apenas com esse cupom.Caso seja sorteado tem até      8 DIAS para receber !\n\n'
+      textEncoded += '      Site para resultado\n'
+      textEncoded += '    https://bit.ly/339t7ZZ'
+
+      textEncoded = encodeURI(textEncoded)
+      window.location.href="intent:"+textEncoded+S+P
+
+      // var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
+      // c.initialize()
+      // c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
+      // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Hora          "+ String(hora +':'+minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Sorteio    " + sortPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Cambista " + settings.elesalesTBanca.value, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Código  " + settings.elesalesTCode.value, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText(settings.elesalesTBola.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
+      // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
+      // c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+      // c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
+      // c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
+      // c.execute()
     }
 
     const cUser = () => {

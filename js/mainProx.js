@@ -173,8 +173,6 @@ if (gh) {
       var datas = settings.eleDate.value.split('-')
       var sorteio = datas[2] + '/' + datas[1] + '/' + datas[0][2] + datas[0][3]
 
-      console.log(settings.eleDate.value)
-
       if (hora == defaults.eleHoraFinal && minuto < defaults.eleMinutoFinal && settings.eleDate.value == hj) {
 
         var queryTrue = "=QUERY(ball!A:E; #select * where E = date '" + settings.eleDate.value + "'#)"
@@ -210,28 +208,54 @@ if (gh) {
         if (disponivel) {
           for (var i = 0; i < 11; i++)
             text += possible.charAt(Math.floor(Math.random() * possible.length))
+          console.log('OIII')
 
-          var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
-          c.initialize()
-          c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Hora          " + String(hora + ':' + minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Sorteio    " + sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Cambista " + localStorage.getItem('cambista'), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Código  " + text, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
-          c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
-          c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
-          c.execute()
+          var S = "#Intent;scheme=rawbt;"
+          var P =  "package=ru.a402d.rawbtprinter;end;"
+
+          var textEncoded = ''
+          textEncoded += '        3,00 POR 500,00\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Data:                  '+ hjPrint +'\n'
+          textEncoded += ' Hora:                     '+ String(hora + ':' + minuto) +'\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Data:                  '+ sorteio +'\n'
+          textEncoded += ' Hora:                     17:00\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Cambista:          '+ localStorage.getItem('cambista') +'\n'
+          textEncoded += ' Código:            '+ text +'\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Número:\n'
+          textEncoded += '              '+ settings.eleValue.value +'\n'
+          textEncoded += '--------------------------------'
+          textEncoded += 'Pagamento apenas com esse cupom.Caso seja sorteado tem até      8 DIAS para receber !\n\n'
+          textEncoded += '      Site para resultado\n'
+          textEncoded += '    https://bit.ly/339t7ZZ'
+
+          textEncoded = encodeURI(textEncoded)
+          window.location.href="intent:"+textEncoded+S+P
+
+          // var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
+          // c.initialize()
+          // c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Hora          " + String(hora + ':' + minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Sorteio    " + sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Cambista " + localStorage.getItem('cambista'), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Código  " + text, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
+          // c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
+          // c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
+          // c.execute()
 
           var xhr = new XMLHttpRequest()
           xhr.open("post", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
@@ -300,27 +324,52 @@ if (gh) {
           for (var i = 0; i < 11; i++)
             text += possible.charAt(Math.floor(Math.random() * possible.length))
 
-          var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
-          c.initialize()
-          c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Hora          " + String(hora + ':' + minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Sorteio    " + sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Cambista " + localStorage.getItem('cambista'), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Código  " + text, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
-          c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
-          c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-          c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
-          c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
-          c.execute()
+          
+            var S = "#Intent;scheme=rawbt;"
+            var P =  "package=ru.a402d.rawbtprinter;end;"
+  
+          var textEncoded = ''
+          textEncoded += '        3,00 POR 500,00\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Data:                  '+ hjPrint +'\n'
+          textEncoded += ' Hora:                     '+ String(hora + ':' + minuto) +'\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Data:                  '+ sorteio +'\n'
+          textEncoded += ' Hora:                     17:00\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Cambista:          '+ localStorage.getItem('cambista') +'\n'
+          textEncoded += ' Código:            '+ text +'\n'
+          textEncoded += '--------------------------------'
+          textEncoded += ' Número:\n'
+          textEncoded += '              '+ settings.eleValue.value +'\n'
+          textEncoded += '--------------------------------'
+          textEncoded += 'Pagamento apenas com esse cupom.Caso seja sorteado tem até      8 DIAS para receber !\n\n'
+          textEncoded += '      Site para resultado\n'
+          textEncoded += '    https://bit.ly/339t7ZZ'
+
+          textEncoded = encodeURI(textEncoded)
+          window.location.href="intent:"+textEncoded+S+P
+          // var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
+          // c.initialize()
+          // c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Hora          " + String(hora + ':' + minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Sorteio    " + sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Cambista " + localStorage.getItem('cambista'), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Código  " + text, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
+          // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
+          // c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+          // c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
+          // c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
+          // c.execute()
 
           var xhr = new XMLHttpRequest()
           xhr.open("post", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)
@@ -393,27 +442,52 @@ if (gh) {
             for (var i = 0; i < 11; i++)
               text += possible.charAt(Math.floor(Math.random() * possible.length))
 
-            var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
-            c.initialize()
-            c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Hora          " + String(hora + ':' + minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Sorteio    " + sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Cambista " + localStorage.getItem('cambista'), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Código  " + text, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
-            c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
-            c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
-            c.execute()
+            var S = "#Intent;scheme=rawbt;"
+            var P =  "package=ru.a402d.rawbtprinter;end;"
+  
+            var textEncoded = ''
+            textEncoded += '        3,00 POR 500,00\n'
+            textEncoded += '--------------------------------'
+            textEncoded += ' Data:                  '+ hjPrint +'\n'
+            textEncoded += ' Hora:                     '+ String(hora + ':' + minuto) +'\n'
+            textEncoded += '--------------------------------'
+            textEncoded += ' Data:                  '+ sorteio +'\n'
+            textEncoded += ' Hora:                     17:00\n'
+            textEncoded += '--------------------------------'
+            textEncoded += ' Cambista:          '+ localStorage.getItem('cambista') +'\n'
+            textEncoded += ' Código:            '+ text +'\n'
+            textEncoded += '--------------------------------'
+            textEncoded += ' Número:\n'
+            textEncoded += '              '+ settings.eleValue.value +'\n'
+            textEncoded += '--------------------------------'
+            textEncoded += 'Pagamento apenas com esse cupom.Caso seja sorteado tem até      8 DIAS para receber !\n\n'
+            textEncoded += '      Site para resultado\n'
+            textEncoded += '    https://bit.ly/339t7ZZ'
+  
+            textEncoded = encodeURI(textEncoded)
+            window.location.href="intent:"+textEncoded+S+P
+
+            // var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
+            // c.initialize()
+            // c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Data       " + hjPrint, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Hora          " + String(hora + ':' + minuto), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Sorteio    " + sorteio, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Hora          17:00", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Cambista " + localStorage.getItem('cambista'), c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Código  " + text, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText(settings.eleValue.value, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Pagamento apenas com esse cupom. Caso seja sorteado tem até   8 DIAS   para receber !", c.ALIGNMENT_LEFT, c.FONT_SIZE_SMALL)
+            // c.printText("", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Site para resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
+            // c.printText("https://bit.ly/339t7ZZ", c.ALIGNMENT_CENTER, c.FONT_SIZE_SMALL)
+            // c.execute()
 
             var xhr = new XMLHttpRequest()
             xhr.open("post", 'https://script.google.com/macros/s/AKfycbwkz-3LOYkx7RI9j0osi6O3ELvc0e4Mm514oGyH4JwB3-5_hgk/exec', false)

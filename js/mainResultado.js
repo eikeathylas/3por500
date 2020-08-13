@@ -36,16 +36,41 @@ if (gh) {
         }
 
         const pResult = () => {
-            var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
-            c.initialize()
-            c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
-            c.printText("Data:    " + settings.eleRdate.innerHTML, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
-            c.printText(settings.eleNumber.innerHTML, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
-            c.execute()
+
+            var datas = settings.eleRdate.innerHTML.split('-')
+            var sorteio = datas[2] + '/' + datas[1] + '/' + datas[0][2] + datas[0][3]
+
+            var S = "#Intent;scheme=rawbt;"
+            var P =  "package=ru.a402d.rawbtprinter;end;"
+
+            var textEncoded = ''
+            textEncoded += '        3,00 POR 500,00\n'
+            textEncoded += '--------------------------------'
+            textEncoded += '            Resultado\n'
+            textEncoded += ' Data:                  '+ sorteio +'\n'
+            textEncoded += '--------------------------------'
+            textEncoded += ' Número:\n'
+            textEncoded += '              '+ settings.eleNumber.innerHTML +'\n'
+            textEncoded += '--------------------------------'
+            textEncoded += 'Caso seja sorteado tem até      8 DIAS para receber!\n\n'
+            textEncoded += '      Site para resultado\n'
+            textEncoded += '    https://bit.ly/339t7ZZ'
+
+            textEncoded = encodeURI(textEncoded)
+            window.location.href="intent:"+textEncoded+S+P
+
+
+
+            // var c = new PosPrinterJob(getCurrentDriver(), getCurrentTransport())
+            // c.initialize()
+            // c.printText("3,00 por 500,00", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM3)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Resultado", c.ALIGNMENT_CENTER, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Data:    " + settings.eleRdate.innerHTML, c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("-------------------", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText("Número:", c.ALIGNMENT_LEFT, c.FONT_SIZE_MEDIUM1)
+            // c.printText(settings.eleNumber.innerHTML, c.ALIGNMENT_CENTER, c.FONT_SIZE_BIG)
+            // c.execute()
         }
 
         const change = (event) => {
