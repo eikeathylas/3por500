@@ -63,6 +63,9 @@ if (gh) {
                     settings.elePrint.classList.add('bg-danger')
                     settings.elePrint.classList.add('text-white')
                     settings.elePrint.disabled = true
+                    settings.eleCheck.classList.remove('bg-danger')
+                    settings.eleCheck.classList.add('bg-success')
+                    settings.eleCheck.disabled = false
                 }
             }
         }
